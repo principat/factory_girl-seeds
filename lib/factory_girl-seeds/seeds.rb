@@ -5,6 +5,12 @@ module FactoryGirl
     @ids = {}
     @classes = {}
 
+    #reset is must be called after truncate or delete on database
+    def self.reset
+        @ids={}
+        @classes={}
+    end
+
     def self.create(factory_name, *attributes)
       model = FactoryGirl.create(factory_name, *attributes)
       @ids[factory_name] = model.id
